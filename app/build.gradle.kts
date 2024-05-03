@@ -4,6 +4,19 @@ plugins {
     id("maven-publish")
 }
 
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("maven") {
+                artifact("$buildDir/outputs/aar/${artifactId}-release.aar")
+                groupId = "com.github.mint"
+                artifactId = "mint-android-app"
+                version = "1.0.2"
+            }
+        }
+    }
+}
+
 android {
     namespace = "com.example.libapp"
     compileSdk = 34
